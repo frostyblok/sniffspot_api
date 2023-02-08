@@ -1,9 +1,6 @@
 class SpotsController < ApplicationController
   before_action :set_spot, only: [:show, :update, :destroy]
 
-  include Response
-  include ExceptionHandler
-
   def index
     @spots = Spot.all
     json_response(@spots)
