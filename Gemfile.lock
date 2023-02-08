@@ -210,7 +210,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 4.1)
   rails (~> 6.0.6)
-  rspec-rails (~> 3.5)
+  rspec-rails
   shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
