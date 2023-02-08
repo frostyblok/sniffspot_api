@@ -46,14 +46,18 @@ RSpec.describe 'Spots API', type: :request do
 
   describe 'POST /spots' do
     let(:valid_attributes) do
-      { title: 'Learn Elm', description: 'This is a random description', price: 30.9 }
+      { title: 'Learn Elm',
+        description: 'This is a random description',
+        price: 30.9, image_urls: %w[http://ward.net/lolita.boyle http://hauck.org/yessenia http://flatley.info/jann_casper http://jacobi.name/tyrone.parker] }
     end
 
     context 'when the request is valid' do
       before { post '/spots', params: valid_attributes }
 
       it 'creates a spot' do
+        binding.pry
         expect(JSON.parse(response.body)['title']).to eq('Learn Elm')
+        expect(JSON.parse(response.body)['list_images'].size).to eq(4)
       end
 
       it 'returns status code 201' do
@@ -62,7 +66,7 @@ RSpec.describe 'Spots API', type: :request do
     end
 
     context 'when the request is invalid' do
-      let(:invalid_attributes) { { title: nil, description: 'Random', price: 40.0 } }
+      let(:invalid_attributes) { { title: nil, description: 'Random', price: 40.0, image_urls: [] } }
       before { post '/spots', params: invalid_attributes }
 
       it 'returns status code 422' do

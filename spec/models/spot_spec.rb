@@ -4,4 +4,22 @@ RSpec.describe Spot, type: :model do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:price) }
+
+  describe "#list_images" do
+    it 'should list all images for a spot' do
+      spot = create(:spot)
+      images = create_list(:image, 4, spot_id: spot.id)
+
+      expect(spot.list_images).to eq(images.pluck(:url))
+    end
+  end
+
+  describe "#add_images" do
+    it 'should list all images for a spot' do
+      spot = create(:spot)
+      images = create_list(:image, 4).pluck(:url)
+
+      expect { spot.add_images(images) }.to change { Image.count }.by(4)
+    end
+  end
 end

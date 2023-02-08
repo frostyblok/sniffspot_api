@@ -7,8 +7,12 @@ class SpotsController < ApplicationController
   end
 
   def create
-    spot = Spot.create!(spot_params)
-    json_response(spot, "201")
+    ActiveRecord::Base.transaction do
+      spot = Spot.create!(spot_params)
+      spot.add_images(params[:image_urls])
+
+      json_response(spot.as_json(methods: [:list_images]), "201")
+    end
   end
 
   def show
@@ -28,7 +32,7 @@ class SpotsController < ApplicationController
   private
 
   def spot_params
-    params.permit(:title, :description, :price, :image_url)
+    params.permit(:title, :description, :price, :image_urls)
   end
 
   def set_spot
