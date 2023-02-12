@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :set_spot_reviews, only: [:show, :update, :destroy]
 
   def index
-    json_response(@spot.reviews)
+    json_response(@spot.as_json(include: [:reviews], methods: %i[list_images average_ratings]))
   end
 
   def show
@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
 
   def create
     @spot.reviews.create!(review_params)
-    json_response(@spot, "201")
+    json_response(@spot.as_json(include: [:reviews], methods: %i[list_images average_ratings]), "201")
   end
 
   def update

@@ -3,20 +3,20 @@ class SpotsController < ApplicationController
 
   def index
     @spots = Spot.all
-    json_response(@spots)
+    json_response(@spots.as_json(include: [:reviews], methods: %i[list_images average_ratings]))
   end
 
   def create
     ActiveRecord::Base.transaction do
       spot = Spot.create!(spot_params)
-      spot.add_images(params[:image_urls])
+      spot.add_images!(params[:images])
 
-      json_response(spot.as_json(methods: [:list_images]), "201")
+      json_response(spot.as_json(include: [:reviews], methods: %i[list_images average_ratings]), :created)
     end
   end
 
   def show
-    json_response(@spot)
+    json_response(@spots.as_json(include: [:reviews], methods: %i[list_images average_ratings]))
   end
 
   def update
@@ -32,7 +32,7 @@ class SpotsController < ApplicationController
   private
 
   def spot_params
-    params.permit(:title, :description, :price, :image_urls)
+    params.permit(:title, :description, :price, :images)
   end
 
   def set_spot

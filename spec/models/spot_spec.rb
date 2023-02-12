@@ -14,12 +14,12 @@ RSpec.describe Spot, type: :model do
     end
   end
 
-  describe "#add_images" do
+  describe "#add_images!" do
     it 'should add images for a spot' do
       spot = create(:spot)
       images = create_list(:image, 4).pluck(:url)
 
-      expect { spot.add_images(images) }.to change { Image.count }.by(4)
+      expect { spot.add_images!(images) }.to change { Image.count }.by(4)
     end
   end
 
