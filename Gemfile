@@ -22,6 +22,7 @@ gem 'puma', '~> 4.1'
 gem 'cloudinary'
 # DOTENV RAILS
 gem 'dotenv-rails'
+gem 'psych', '< 4'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

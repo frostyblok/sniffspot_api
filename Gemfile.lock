@@ -141,6 +141,7 @@ GEM
       method_source (~> 1.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+    psych (3.3.4)
     puma (4.3.12)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -243,6 +244,7 @@ DEPENDENCIES
   listen (~> 3.2)
   pg
   pry-rails
+  psych (< 4)
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.6)
