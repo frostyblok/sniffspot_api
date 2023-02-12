@@ -8,9 +8,10 @@ class Spot < ApplicationRecord
     images.pluck(:url)
   end
 
-  def add_images(image_urls)
-    image_urls.each do |image_url|
-      images.create!(url: image_url)
+  def add_images!(image_blobs)
+    image_blobs.each do |blob|
+      result = Rails.env.test? ? {'secure_url' => 'random.jpg'} : Cloudinary::Uploader.upload(blob)
+      images.create!(url: result['secure_url'])
     end
   end
 
