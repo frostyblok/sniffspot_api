@@ -1,24 +1,44 @@
-# README
+# Sniffspot #
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Vision
 
-Things you may want to cover:
+Sniffspot's private dog parks are the best way to exercise your dog. We have the best variety and the best priced dog parks anywhere!
 
-* Ruby version
+## Things you may want to cover: ##
+- Ruby version: 3.1.0
+- Rails version: 6.0.6
+- Database: Postgresql
 
-* System dependencies
+# Installing steps #
 
-* Configuration
 
-* Database creation
+### Clone the project ###
+```
+git clone https://github.com/frostyblok/sniffspot_api
+```
 
-* Database initialization
+### CD into project file ###
+```
+cd sniffspot_api
+```
 
-* How to run the test suite
+### Install all the necessary dependencies ###
+```
+bundle i
+```
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+## Run test cases ##
+```
+bundle exec rspec spec
+```
+
+## Start rails server ##
+```
+rails s -p 8080
+```
+
+
+# Model Relationship #
+
