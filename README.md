@@ -41,4 +41,5 @@ rails s -p 8080
 
 
 # Model Relationship #
+![Screen Shot 2023-02-13 at 8 27 08 AM](https://user-images.githubusercontent.com/40468678/218370474-58f7e227-9d97-415f-857e-e6f6c53e4aab.png)
 
